@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery Mobile Demos</title>
+    <link rel="stylesheet" href="assets/jquery.mobile-1.4.3.css">
+    <link rel="stylesheet" href="assets/jquery.snippet.css">
+    <script src="assets/jquery-1.11.1.min.js"></script>
+    <script src="assets/jquery.mobile-1.4.3.js"></script>
+    <script type="text/javascript" src="assets/jquery.snippet.min.js"></script>
+</head>
+<body>
+<div data-role="page" id="page">
+
+    <div data-role="header">
+        <a href="index.html" data-icon="back">Voltar</a>
+        <h1>Exemplos jQuery Mobile - NavBar</h1>
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content">
+        
+        <h1>NavBar</h1>
+        <p>Navbars com um item irá processar como 100% de largura.</p>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#" class="ui-btn-active">One</a></li>
+            </ul>
+        </div><!-- /navbar -->
+
+        <p>Os itens do navbar estão definidos para dividir o espaço uniformemente, neste caso, cada botão é metade da largura da janela do navegador:</p>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#" class="ui-btn-active">One</a></li>
+                <li><a href="#">Two</a></li>
+            </ul>
+        </div><!-- /navbar -->
+
+        <p>A adição de um terceiro item fará automaticamente cada botão ter 1/3 da largura da janela do navegador e assim por diante:</p>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#" class="ui-btn-active">One</a></li>
+                <li><a href="#">Two</a></li>
+                <li><a href="#">Three</a></li>
+            </ul>
+        </div><!-- /navbar -->
+
+        <h2>Multi Row</h2>
+        <p>Se mais de cinco itens são adicionados, a barra de navegação simplesmente dividir em duas colunas:</p>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#" class="ui-btn-active">One</a></li>
+                <li><a href="#">Two</a></li>
+                <li><a href="#">Three</a></li>
+                <li><a href="#">Four</a></li>
+                <li><a href="#">Five</a></li>
+                <li><a href="#">Six</a></li>
+                <li><a href="#">Seven</a></li>
+                <li><a href="#">Eight</a></li>
+                <li><a href="#">Nine</a></li>
+                <li><a href="#">Ten</a></li>
+            </ul>
+        </div><!-- /navbar -->        
+
+
+        <h2>Icones</h2>
+        <p>Ícones podem ser adicionados a navbar utilizando a tag <code>data-icon</code>. Por padrão, os ícones são adicionados acima do texto (Data-iconpos = "top"). Os exemplos a seguir adicionar ícones para a barra de navegação no rodapé.</p>
+        <div data-role="footer">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#" data-icon="grid">Summary</a></li>
+                    <li><a href="#" data-icon="star" class="ui-btn-active">Favs</a></li>
+                    <li><a href="#" data-icon="gear">Setup</a></li>
+                </ul>
+            </div><!-- /navbar -->
+        </div><!-- /footer -->        
+        <p>Podemos alterar o posicionamento dos icones alterando a tag <code>data-iconpos</code> no nosso NAVBAR, para <code>data-iconpos="left" / data-iconpos="right" / data-iconpos="bottom"</code>
+        <div data-role="navbar"data-iconpos="left">
+            <ul>
+                <li><a href="#" data-icon="grid" >Summary</a></li>
+                <li><a href="#" data-icon="star" >Favs</a></li>
+                <li><a href="#" data-icon="gear">Setup</a></li>
+            </ul>
+        </div><!-- /navbar -->
+        <br/>
+        <div data-role="navbar"data-iconpos="bottom">
+            <ul>
+                <li><a href="#" data-icon="grid" >Summary</a></li>
+                <li><a href="#" data-icon="star" >Favs</a></li>
+                <li><a href="#" data-icon="gear">Setup</a></li>
+            </ul>
+        </div><!-- /navbar -->
+        <br/>
+        <div data-role="navbar"data-iconpos="right">
+            <ul>
+                <li><a href="#" data-icon="grid" >Summary</a></li>
+                <li><a href="#" data-icon="star" >Favs</a></li>
+                <li><a href="#" data-icon="gear">Setup</a></li>
+            </ul>
+        </div><!-- /navbar -->
+
+    </div><!-- /content -->
+
+    <div data-role="footer">
+        <h4>v 0.0.1</h4>
+    </div><!-- /footer -->
+</div><!-- /page -->
+
+</body>
+</html>

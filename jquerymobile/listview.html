@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery Mobile Demos</title>
+    <link rel="stylesheet" href="assets/jquery.mobile-1.4.3.css">
+    <script src="assets/jquery-1.11.1.min.js"></script>
+    <script src="assets/jquery.mobile-1.4.3.js"></script>
+</head>
+<body>
+<div data-role="page" id="listview">
+
+    <div data-role="header">
+        <a href="index.html" data-icon="back">Voltar</a>
+        <h1>Exemplos jQuery Mobile - ListView</h1>
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content">
+        
+        <h1>Listview</h1>
+        <h2>Lista com Links</h2>
+        <ul data-role="listview">
+            <li><a href="#">Acura</a></li>
+            <li><a href="#">Audi</a></li>
+            <li><a href="#">BMW</a></li>
+            <li><a href="#">Cadillac</a></li>
+            <li><a href="#">Ferrari</a></li>
+        </ul>
+
+        <h2>Lista com Filtro</h2>
+        <p>Caso queira esconder a lista utilize a tag <code>data-filter-reveal="true"</code></p> 
+        <ul data-role="listview" data-filter="true" data-filter-placeholder="Procurar..." data-inset="true">
+            <li><a href="#">Maça</a></li>
+            <li><a href="#">Banana</a></li>
+            <li><a href="#">Cereja</a></li>
+            <li><a href="#">Abacate</a></li>
+            <li><a href="#">Uva</a></li>
+            <li><a href="#">Laranja</a></li>
+        </ul>  
+
+        <br/>
+        <h2>Lista divididas</h2>
+        <ul data-role="listview" data-inset="true" data-divider-theme="a">
+            <li data-role="list-divider">Mail</li>
+            <li><a href="#">Inbox</a></li>
+            <li><a href="#">Outbox</a></li>
+            <li data-role="list-divider">Contacts</li>
+            <li><a href="#">Friends</a></li>
+            <li><a href="#">Work</a></li>
+        </ul>              
+        
+        <br/>
+        <h2>Thumbnails</h2>
+
+        <ul data-role="listview" data-inset="true">
+            <li><a href="#">
+                <img src="assets/img/album-bb.jpg">
+            <h2>Broken Bells</h2>
+            <p>Broken Bells</p></a>
+            </li>
+            <li><a href="#">
+                <img src="assets/img/album-hc.jpg">
+            <h2>Warning</h2>
+            <p>Hot Chip</p></a>
+            </li>
+            <li><a href="#">
+                <img src="assets/img/album-p.jpg">
+            <h2>Wolfgang Amadeus Phoenix</h2>
+            <p>Phoenix</p></a>
+            </li>
+        </ul>
+    </div><!-- /content -->
+
+    <div data-role="footer">
+        <h4>v 0.0.1</h4>
+    </div><!-- /footer -->
+</div><!-- /page -->
+
+
+</body>
+</html>

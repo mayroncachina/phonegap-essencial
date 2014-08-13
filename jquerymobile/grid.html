@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery Mobile Demos</title>
+    <link rel="stylesheet" href="assets/jquery.mobile-1.4.3.css">
+    <link rel="stylesheet" href="assets/jquery.snippet.css">
+    <script src="assets/jquery-1.11.1.min.js"></script>
+    <script src="assets/jquery.mobile-1.4.3.js"></script>
+    <script type="text/javascript" src="assets/jquery.snippet.min.js"></script>
+</head>
+<body>
+<div data-role="page" id="grid">
+
+    <div data-role="header">
+        <a href="index.html" data-icon="back">Voltar</a>
+        <h1>Exemplos jQuery Mobile - Grid</h1>
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content">
+        
+        <h1>Grid</h1>
+        <p>Grids são 100% largura, completamente invisíveis (sem fronteiras ou fundos) e não têm padding ou margens, para que eles não devem interferir com os estilos de elementos colocados dentro deles. Elementos filho são atribuídos <code> ui-bloco-a / b / c / d / e </code> de uma forma sequencial, que faz com que cada elemento flutue lado a lado, formando a grade.</p>
+
+        <h2>Grid Simples</h2>
+        <p>Para construir uma de duas colunas (50/50%), utilize uma classe <code>ui-grid-a</code> e adicione dois contêineres filho dentro dela com a classe <code>class="ui-block-a"</code> e <code>class="ui-block-b"</code> respectivamente.</p>
+        <div class="ui-grid-a">
+            <div class="ui-block-a">A</div>
+            <div class="ui-block-b">B</div>
+        </div><!-- /grid-a -->
+
+        <br/>
+        <h2>Grid Botoes</h2>
+        <p>
+        <fieldset class="ui-grid-b">
+            <div class="ui-block-a"><input type="button" value="Hmm"></div>
+            <div class="ui-block-b"><input type="reset" value="No"></div>
+            <div class="ui-block-c"><input type="submit" value="Yes"></div>
+        </fieldset>
+
+        <br/>
+        <h2>Multi Grid</h2>
+        <div class="ui-grid-b">
+            <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:60px">Block A</div></div>
+            <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px">Block B</div></div>
+            <div class="ui-block-c"><div class="ui-bar ui-bar-a" style="height:60px">Block C</div></div>
+            <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:60px">Block A</div></div>
+            <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px">Block B</div></div>
+            <div class="ui-block-c"><div class="ui-bar ui-bar-a" style="height:60px">Block C</div></div>
+            <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:60px">Block A</div></div>
+            <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px">Block B</div></div>
+            <div class="ui-block-c"><div class="ui-bar ui-bar-a" style="height:60px">Block C</div></div>
+        </div><!-- /grid-c -->
+
+    </div><!-- /content -->
+
+    <div data-role="footer">
+        <h4>v 0.0.1</h4>
+    </div><!-- /footer -->
+</div><!-- /page -->
+
+<script>
+$(document).ready(function(){
+
+    $("pre").snippet("html");
+
+});
+</script>
+
+</body>
+</html>
