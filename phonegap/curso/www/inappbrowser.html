@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Hello World</title>
+    </head>
+    <body>
+        <div>
+            
+            <h1>PhoneGap API</h1>
+            <a href="api.html" class="button">Voltar</a>
+            <br/>
+            <h1>InAppBrowser</h1>
+            <button onclick="executeScript()">Execute Script</button>
+            <button onclick="insertCSS()">Insert CSS</button>
+            <button onclick="fullScreen()">Full Screen</button>
+            <button onclick="openClose()">open/close</button>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript">
+
+            var iabRef = null;
+
+            function executeScript() {
+                 iabRef = window.open('http://apache.org', '_blank', 'location=yes');
+                 iabRef.addEventListener('loadstop', replaceHeaderImage);
+                 iabRef.addEventListener('exit', iabClose);
+            }
+
+            function insertCSS() {
+                 iabRef = window.open('http://apache.org', '_blank', 'location=yes');
+                 iabRef.addEventListener('loadstop', changeBackgroundColor);
+                 iabRef.addEventListener('exit', iabClose);
+            }
+
+            function fullScreen() {
+                 iabRef = window.open('http://apache.org', '_blank', 'location=no');
+            }
+
+            function openClose() {
+                 var ref = window.open('http://apache.org', '_blank', 'location=yes');
+                 setTimeout(function() {
+                     ref.close();
+                 }, 5000);
+            }
+
+            function changeBackgroundColor() {
+                iabRef.insertCSS({
+                    code: "body { background: #ffff00; }"
+                }, function() {
+                    alert("Styles Altered");
+                });
+            }
+
+            function iabClose(event) {
+                 iabRef.removeEventListener('loadstop', changeBackgroundColor);
+                 iabRef.removeEventListener('exit', iabClose);
+            }
+
+            function replaceHeaderImage() {
+                iabRef.executeScript({
+                    code: "var img=document.querySelector('#header img'); img.src='http://cordova.apache.org/images/cordova_bot.png';"
+                }, function() {
+                    alert("Image Element Successfully Hijacked");
+                });
+            }
+
+            function iabClose(event) {
+                 iabRef.removeEventListener('loadstop', replaceHeaderImage);
+                 iabRef.removeEventListener('exit', iabClose);
+            }            
+        </script>
+    </body>
+</html>

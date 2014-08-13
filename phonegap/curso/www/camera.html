@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Hello World</title>
+    </head>
+    <body>
+        <div>
+            
+            <h1>PhoneGap API</h1>
+            <a href="api.html" class="button">Voltar</a>
+            <br/>
+            <h1>Camera</h1>
+            <button onclick="capturePhoto();">Capture Photo</button> <br>
+            <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
+            <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
+            <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
+            <div style="text-align:center">
+                <img style="display:none;width:240px;height:240px;" id="smallImage" src="" />
+                <img style="display:none;" id="largeImage" src="" />
+            </div>
+
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript">
+
+
+            var pictureSource;   // picture source
+            var destinationType; // sets the format of returned value
+
+            document.addEventListener("deviceready",onDeviceReady,false);
+
+            function onDeviceReady() {
+                pictureSource=navigator.camera.PictureSourceType;
+                destinationType=navigator.camera.DestinationType;
+            }
+
+            function onPhotoDataSuccess(imageData) {
+              var smallImage = document.getElementById('smallImage');
+              smallImage.style.display = 'block';
+              smallImage.src = "data:image/jpeg;base64," + imageData;
+            }
+
+            function onPhotoURISuccess(imageURI) {
+              var largeImage = document.getElementById('largeImage');
+              largeImage.style.display = 'block';
+              largeImage.src = imageURI;
+            }
+
+            function capturePhoto() {
+              navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
+                destinationType: destinationType.DATA_URL });
+            }
+
+            function capturePhotoEdit() {
+              navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true,
+                destinationType: destinationType.DATA_URL });
+            }
+
+            function getPhoto(source) {
+              navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
+                destinationType: destinationType.FILE_URI,
+                sourceType: source });
+            }
+
+            function onFail(message) {
+              alert('Failed because: ' + message);
+            }
+
+
+
+        </script>
+    </body>
+</html>

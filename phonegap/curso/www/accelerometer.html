@@ -1,0 +1,89 @@
+ <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Hello World</title>
+    </head>
+    <body>
+        <div>
+            
+            <h1>PhoneGap API</h1>
+            <a href="api.html" class="button">Voltar</a>
+            <br/>
+            <h1>Accelerometer</h1>
+            
+
+		 	<p id="accelerometerStatus">checking...</p>
+		    
+		    <div id="boxCanvas" style="position:relative; width: 290px; height: 300px; border: 1px solid grey;">
+		      <div id="box" style="position:absolute; width: 10px; height: 10px; left: 50%; top: 50%; background: blue;">
+		    </div>
+
+
+
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript">
+            
+			var watchID;
+    
+	    $("#accelerometer").bind("pageshow",function(){
+		    if (navigator.accelerometer) {
+
+		      watchID = navigator.accelerometer.watchAcceleration(
+		      														accelerometerSuccess, accelerometerError, { frequency: 100 }
+		      													);
+
+		    } else {
+
+		      accelerometerError('navigator.accelerometer not supported');
+		      window.addEventListener("devicemotion",devicemotionHandler,true);
+
+		    }
+		    $("#accelerometer").bind("pagebeforehide",function(){
+		      if (watchID) {
+		        navigator.accelerometer.clearWatch(watchID);
+		      } else {
+		        window.removeEventListener("devicemotion",devicemotionHandler,true);
+		      }
+		    })
+	 	});
+		  
+		  function devicemotionHandler(event){
+		    accelerometerSuccess(event.accelerationIncludingGravity);
+		  }
+		  
+		  function accelerometerSuccess(acceleration) {
+		    $("#accelerometerStatus").html('X: ' + acceleration.x + '<br />' +
+		                  'Y: ' + acceleration.y + '<br />' +
+		                  'Z: ' + acceleration.z);
+		                  
+		    var current = $("#box").position();
+		    $("#box").css({
+		      left: checkValue(current.left - acceleration.x, 0, 280) + "px",
+		      top: checkValue(current.top + acceleration.y, 0, 290) + "px",
+		    });
+		  }
+		  
+		  function checkValue(value,min,max){
+		    if(value<min){
+		      value = min;
+		    } else if(value>max){
+		      value = max;
+		    }
+		    return parseInt(value);
+		  }
+		  
+		  function accelerometerError(msg) {
+		    $("#accelerometerStatus").html(typeof msg == 'string' ? msg : "failed");
+		  }
+
+
+
+        </script>
+    </body>
+</html>
