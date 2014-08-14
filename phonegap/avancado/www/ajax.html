@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Hello World</title>
+        <style>
+	      html, body, #map-canvas {
+	        height: 100%;
+	        margin: 0px;
+	        padding: 0px
+	      }
+	    </style>
+    </head>
+    <body>
+        <div>
+            
+            <h1>PhoneGap API</h1>
+            <a href="index.html" class="button">Voltar</a>
+            <br/>
+            <h1>Ajax</h1>
+    		<ul id="listview"></ul>
+
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" charset="utf-8">
+	       
+	       function ajax() {
+
+				var url = "http://wheresbar.com.br:8080/webservices/bares/";
+				console.log(url)
+				  $.ajax({
+				      url: url,
+				      type: 'GET',
+				      error : function (data){
+				              
+				              console.log(data);
+				      },
+				      success: function (data) {
+
+				        linha = "";
+				        for (var i = 0; i < data.length; i++) {
+
+				          linha += '<li>';
+				          linha += '  <a href="#bar" onclick="sessionStorage.ID='+data[i][4]+'">';
+				          linha += '    <img src="http://wheresbar.com.br:8080/static/'+data[i][0]+'" width="70" style="left: 8px;top: 4px;">';
+				          linha += '    <h2>'+data[i][1]+'</h2>';
+				          linha += '    <p>'+data[i][2]+'</p></a>';
+				          linha += '    <span class="ui-li-count">'+data[i][3]+'</span>';
+				          linha += '  </a>';
+				          linha += ' </li>';
+				          
+
+				        };
+				    	
+				    	$("listview").html(linha);
+
+				      }
+				  });
+			}
+
+    </script>
+    </body>
+</html>
