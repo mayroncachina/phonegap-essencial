@@ -14,12 +14,28 @@
             <h1>PhoneGap API</h1>
             <a href="api.html" class="button">Voltar</a>
             <br/>
-            <h1>File</h1>
+            <h1>File-Transfer</h1>
 
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript">
-            
+
+            function onPhotoUriSuccess(imageUriToUpload){
+
+                var url=encodeURI("http://sandbox.cachina.com.br/transit/index.php");
+
+                var options = new FileUploadOptions();
+                options.imagem = imageUriToUpload.substr(imageUriToUpload.lastIndexOf('/')+1);
+                options.mimeType = "image/jpeg";
+                options.params = params;
+                options.chunkedMode = true; //isto é importante para enviar os dados e arquivos
+
+
+                var ft = new FileTransfer();
+                ft.upload(imageUriToUpload, url, succesFileTransfer, errorFileTransfer, options);
+
+            }
+
         </script>
     </body>
 </html>

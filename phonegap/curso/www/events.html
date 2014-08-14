@@ -8,7 +8,7 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Hello World</title>
     </head>
-    <body>
+    <body onload="onLoad()">
         <div>
             
             <h1>PhoneGap API</h1>
@@ -26,6 +26,7 @@
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript">
+            
             // Wait for device API libraries to load
             function onLoad() {
                 document.addEventListener("deviceready", onDeviceReady, false);
@@ -36,9 +37,11 @@
 
                 document.addEventListener("pause", onPause, false);
 
+                document.addEventListener("resume", onResume, false);
+
                 document.addEventListener("volumedownbutton", onVolumeDownKeyDown, false);
                 
-                document.addEventListener("volumeupbutton", onVolumeUpKeyDown, false);
+                document.addEventListener("volumeupbutton", onVolumeDownKeyDown, false);
 
                 document.addEventListener("searchbutton", onSearchKeyDown, false);
             }
@@ -65,6 +68,12 @@
             function onPause() {
               alert("PAUSA do APP")
             }
+
+            // Handle the pause event
+            //
+            function onResume() {
+              alert("RESUME do APP")
+            }            
 
              // Handle the volume down button
             //

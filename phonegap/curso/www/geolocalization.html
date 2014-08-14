@@ -14,26 +14,40 @@
             <h1>PhoneGap API</h1>
             <a href="api.html" class="button">Voltar</a>
             <br/>
-            <h1>Storage</h1>
-            <p><input type="text" name="nome"  id="nome" /></p>
-            <p>
-                <button onclick="salvar(); return false;">Salvar</button>
-                <button onclick="ler(); return false;">Ler</button>
-            </p>
+            <h1>Geolocalization</h1>
+            <p id="geolocation">Finding geolocation...</p>
 
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript">
 
-        function salvar(){
-            alert("Nome salvo: " + $("#nome").val())
-            localStorage.setItem('nome', $("#nome").val());
-        }
+          document.addEventListener("deviceready", onDeviceReady, false);
 
-        function ler(){
-            alert(localStorage.getItem('nome'));
-        }
+          function onDeviceReady() {
+            navigator.geolocation.getCurrentPosition(onSuccess, onError);
+          }
+
+          function onSuccess(position) {
+            
+            var element = document.getElementById('geolocation');
+            
+            element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
+                                'Longitude: '          + position.coords.longitude             + '<br />' +
+                                'Altitude: '           + position.coords.altitude              + '<br />' +
+                                'Accuracy/Precisão: '           + position.coords.accuracy              + '<br />' +
+                                'Altitude Accuracy/Precisão: '  + position.coords.altitudeAccuracy      + '<br />' +
+                                'Heading/Sub-Solo: '            + position.coords.heading               + '<br />' +
+                                'Speed: '              + position.coords.speed                 + '<br />' +
+                                'Timestamp: '          + position.timestamp                    + '<br />';
+
+          }
+
+          function onError(error) {
+            alert('code: '    + error.code    + '\n' +
+                  'message: ' + error.message + '\n');
+          }
+
 
         </script>
     </body>

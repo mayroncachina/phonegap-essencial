@@ -27,60 +27,66 @@
 
         </div>
         <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript">
             
 			var watchID;
-    
-	    $("#accelerometer").bind("pageshow",function(){
-		    if (navigator.accelerometer) {
 
-		      watchID = navigator.accelerometer.watchAcceleration(
-		      														accelerometerSuccess, accelerometerError, { frequency: 100 }
-		      													);
+			document.addEventListener("deviceready", onDeviceReady, false);
 
-		    } else {
+			function onDeviceReady() {
 
-		      accelerometerError('navigator.accelerometer not supported');
-		      window.addEventListener("devicemotion",devicemotionHandler,true);
+			    
+			    if (navigator.accelerometer) {
 
-		    }
-		    $("#accelerometer").bind("pagebeforehide",function(){
-		      if (watchID) {
-		        navigator.accelerometer.clearWatch(watchID);
-		      } else {
-		        window.removeEventListener("devicemotion",devicemotionHandler,true);
-		      }
-		    })
-	 	});
+			      watchID = navigator.accelerometer.watchAcceleration(
+						      	accelerometerSuccess, 
+						      	accelerometerError, 
+						      	{ frequency: 100 }
+					      	);
+
+			    } else {
+
+					accelerometerError('navigator.accelerometer not supported');
+
+			    }
+
+			}		    
 		  
-		  function devicemotionHandler(event){
-		    accelerometerSuccess(event.accelerationIncludingGravity);
-		  }
-		  
-		  function accelerometerSuccess(acceleration) {
-		    $("#accelerometerStatus").html('X: ' + acceleration.x + '<br />' +
-		                  'Y: ' + acceleration.y + '<br />' +
-		                  'Z: ' + acceleration.z);
-		                  
-		    var current = $("#box").position();
-		    $("#box").css({
-		      left: checkValue(current.left - acceleration.x, 0, 280) + "px",
-		      top: checkValue(current.top + acceleration.y, 0, 290) + "px",
-		    });
-		  }
-		  
-		  function checkValue(value,min,max){
-		    if(value<min){
-		      value = min;
-		    } else if(value>max){
-		      value = max;
-		    }
-		    return parseInt(value);
-		  }
-		  
-		  function accelerometerError(msg) {
-		    $("#accelerometerStatus").html(typeof msg == 'string' ? msg : "failed");
-		  }
+			function devicemotionHandler(event){
+				accelerometerSuccess(event.accelerationIncludingGravity);
+			}
+
+			function accelerometerSuccess(acceleration) {
+				$("#accelerometerStatus").html(
+						'X: ' + acceleration.x + '<br />' +
+			            'Y: ' + acceleration.y + '<br />' +
+			            'Z: ' + acceleration.z
+			        );
+			              
+				var current = $("#box").position();
+				$("#box").css({
+				  left: checkValue(current.left - acceleration.x, 0, 280) + "px",
+				  top: checkValue(current.top + acceleration.y, 0, 290) + "px",
+				});
+			}
+
+			function checkValue(value,min,max){
+				if(value<min){
+				
+				  value = min;
+				
+				} else if(value>max){
+					
+				  value = max;
+				}
+
+				return parseInt(value);
+			}
+
+			function accelerometerError(msg) {
+				$("#accelerometerStatus").html(typeof msg == 'string' ? msg : "failed");
+			}
 
 
 

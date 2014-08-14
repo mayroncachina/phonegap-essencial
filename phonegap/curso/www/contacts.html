@@ -15,41 +15,109 @@
             <a href="api.html" class="button">Voltar</a>
             <br/>
             <h1>Contacts</h1>
+            <br/>
+            <label>Novo Contato:</label>
+            <input name⁼"nome-contato" id="nome"/>
+            <br/>
+            <button class="button" onclick="getQtd()">Localizar</button>
+            <div id="contacts"></div>
+
 
         </div>
         <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript">
 
-            // display the address information for all contacts
+           function getQtd(){
+               
 
-            function onSuccess(contacts) {
-                for (var i = 0; i < navigator.contacts.length; i++) {
-                    for (var j = 0; j < contacts[i].addresses.length; j++) {
-                        alert("Pref: "         + contacts[i].addresses[j].pref          + "\n" +
-                            "Type: "           + contacts[i].addresses[j].type          + "\n" +
-                            "Formatted: "      + contacts[i].addresses[j].formatted     + "\n" +
-                            "Street Address: " + contacts[i].addresses[j].streetAddress + "\n" +
-                            "Locality: "       + contacts[i].addresses[j].locality      + "\n" +
-                            "Region: "         + contacts[i].addresses[j].region        + "\n" +
-                            "Postal Code: "    + contacts[i].addresses[j].postalCode    + "\n" +
-                            "Country: "        + contacts[i].addresses[j].country);
-                    }
-                }
-            };
-
-            function onError(contactError) {
-                alert('onError!');
-            };
-
-            document.addEventListener("deviceready", onDeviceReady, false);
-
-            function onDeviceReady() {
-                // find all contacts
-                var options = new ContactFindOptions();
-                options.filter = "";
-                var filter = ["displayName", "addresses"];
-                navigator.contacts.find(filter, onSuccess, onError, options);
+ $("#contacts").html("");
+ 
+       var myContacts       = new Object();
+ 
+       // Default image path for the profile image 
+       var defaultImagePath = $("#defaultImagePath").attr('src');
+ 
+        for (var i=0; i<contacts.length; i++)
+        {
+ 
+            if( contacts[i].phoneNumbers == null )
+            continue;
+ 
+           // Checks for the image 
+            var img = contacts[i].photos  != null ? contacts[i].photos[0].value : defaultImagePath;
+ 
+            if(contacts[i].phoneNumbers.length)
+            for (var j=0; j<contacts[i].phoneNumbers.length; j++)
+            {
+                var pNumber = contacts[i].phoneNumbers[j].value; 
+                var name = contacts[i].displayName != null ? contacts[i].displayName: "No name";
+ 
+               // To sort the names based on the starting letter  
+               // Stores the names in that array 
+               var index = name.substring(0,1).toUpperCase();
+ 
+               if (typeof myContacts[index] == 'undefined')
+               {
+                   myContacts[index] = new Array();
+               }
+ 
+               // cuts the large names 
+               if( name.length > 35 )
+               {
+                   name = name.substr(0,35)+"...";
+               }
+              // Push every details into an array. 
+              myContacts[index].push({"name":name, "pNumber": pNumber, "img": img} );
+ 
             }
+ 
+        }
+ 
+          var arrayKeys = new Array(); 
+          for (var key in myContacts )
+          {
+              arrayKeys.push( key );
+          }
+ 
+          // Sorts the array based on the key A, B , C etc 
+          arrayKeys = arrayKeys.sort();
+ 
+          for( i = 0 ; i < arrayKeys.length ; i++ )
+          {
+               var records =  myContacts[ arrayKeys[i] ];
+               $("#contacts").append ("<li class='letter-head'>"+ arrayKeys[i]+"</li>");
+ 
+             // Sort each names  
+             records = records.sort( sortNames );
+ 
+               for( var r_key in records  )
+               {
+ 
+ 
+ 
+                    $("#contacts").append ( "<li><img src='"+ records[r_key].img+"' /> <span class='contact-name'>"+records[r_key].name + "</span><span class='contact-number'>" + records[r_key].pNumber +  "</span></li>");
+               }
+ 
+          }
+ 
+ 
+            hide_loader();
+            $('.addressBook').effect("slide", {direction: "right"}, 500);
+ 
+ 
+     }
+ 
+  function sortNames(a, b )
+     {
+         return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1;
+     }
+
+
+
+
+
+           }
             
         </script>
     </body>
