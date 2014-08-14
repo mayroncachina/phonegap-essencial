@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery Mobile Demos</title>
+    <link rel="stylesheet" href="assets/jquery.mobile-1.4.3.css">
+    <link rel="stylesheet" href="assets/jquery.snippet.css">
+    <script src="assets/jquery-1.11.1.min.js"></script>
+    <script src="assets/jquery.mobile-1.4.3.js"></script>
+    <script type="text/javascript" src="assets/jquery.snippet.min.js"></script>
+</head>
+<body>
+<div data-role="page" id="page">
+
+    <div data-role="header">
+        <a href="index.html" data-icon="back">Voltar</a>
+        <h1>Exemplos jQuery Mobile - Page Events</h1>
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content">
+        <blockquote>
+          <p><strong>pagebeforeshow</strong></p>
+          
+          <p>Triggered on the page being shown, before its transition begins.</p>
+          
+          <p><strong>pagebeforehide</strong></p>
+          
+          <p>Triggered on the page being hidden, before its transition begins.</p>
+          
+          <p><strong>pageshow</strong></p>
+          
+          <p>Triggered on the page being shown, after its transition completes.</p>
+          
+          <p><strong>pagehide</strong></p>
+          
+          <p>Triggered on the page being hidden, after its transition completes.</p>
+        </blockquote>
+        <a href="#page2">PAGE CHANGE</a>
+
+    </div><!-- /content -->
+
+    <div data-role="footer">
+        <h4>v 0.0.1</h4>
+    </div><!-- /footer -->
+</div><!-- /page -->
+<div data-role="page" id="page2">
+
+    <div data-role="header">
+        <a href="index.html" data-icon="back">Voltar</a>
+        <h1>Exemplos jQuery Mobile - Page Events</h1>
+    </div><!-- /header -->
+</div><!-- /page -->
+<script type="text/javascript">
+    
+    $(document).on('pageinit', 'div', function(){ 
+        alert( 'Pagina Criada' );
+    });
+
+    $(document).on('pagebeforecreate', '#page', function(){ 
+        alert( 'Antes de Criar' );
+    });
+
+    
+
+    $(document).on('pagebeforechange', '#page', function(){ 
+        alert( 'Antes de Mudar' );
+    });
+
+
+
+    $(document).on('pagebeforeload', '#page', function(){ 
+        alert( 'Antes de Carregar' );
+    });
+
+
+    $(document).on('pagebeforeshow', '#page', function(){ 
+        alert( 'Antes de Exibir' );
+    });
+
+    $(document).on('pagecreate', '#page2', function(){ 
+        alert('Criada Pagina 2');
+        $.mobile.changePage( "#page", { transition: "slideup" });
+    });
+
+
+</script>
+
+</body>
+</html>
