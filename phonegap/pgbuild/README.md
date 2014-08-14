@@ -1,0 +1,12 @@
+Exemplo de uso do Phonegap Build
+==================
+
+Exemplo de uso das APIs:
+ * Instagram - 
+ * Pushwoosh - 
+ * Social Shared - OK
+ * Barcodescan - OK
+ * Goole Navigator - OK
+
+
+ Phonegap Build: http://build.phonegap.com
