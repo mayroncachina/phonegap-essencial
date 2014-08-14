@@ -1,6 +1,15 @@
 Exemplo Avançados Phonegap
 ==================
 
+* Google Maps - OK
+* Google Maps Static - OK
+* Ajax
+* Local Notification
+* Orientation - OK
+* MAC - OK
+* Video
+
+
 Adicione os seguintes plugins:
 
 	phonegap plugin add org.apache.cordova.geolocation
