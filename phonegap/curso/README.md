@@ -26,7 +26,6 @@ Adicione os seguintes plugins:
 	phonegap plugin add org.apache.cordova.device
 	phonegap plugin add org.apache.cordova.device-motion
 	phonegap plugin add org.apache.cordova.dialogs
-	phonegap plugin add org.apache.cordova.file
 	phonegap plugin add org.apache.cordova.file-transfer
 	phonegap plugin add org.apache.cordova.geolocation
 	phonegap plugin add org.apache.cordova.inappbrowser
