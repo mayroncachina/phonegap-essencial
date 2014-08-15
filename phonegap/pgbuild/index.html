@@ -1,31 +1,10 @@
 <!DOCTYPE html>
-<!--
-    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
-
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
     <head>
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-tap-highlight" content="no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Hello World</title>
     </head>
@@ -33,21 +12,25 @@
         <div class="app">
             <h1>PhoneGap</h1>
             <br/>
-            <a href="#" onclick="instagram()" class="button">Instagram</a>
             <a href="#" onclick="scanner()" class="button">BarcodeScanner</a>
             <a href="sharing.html" class="button">Social Sharing</a>
             <a href="#" onclick="navigate()" class="button">Navigator</a>
-            <a href="#" onclick="push()" class="button">Pushwoosh</a>
+            <a href="#" class="button">Pushwoosh</a>
 
             <div id="insta"></div>
         </div>
 
 
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/social.js"></script>
-        <script type="text/javascript" src="js/pushwoosh.js"></script>
+        <script type="text/javascript" src="PushNotification.js"></script>
         <script type="text/javascript">
            
+            document.addEventListener("deviceready", onDeviceReady, false);
+
+
+            function onDeviceReady() {
+                initPushwoosh()
+            }
 
             function navigate(){
                 navigator.google_navigate.navigate("Avenida Paulista, 1234, São Paulo", function() {
@@ -71,29 +54,45 @@
                 );                
             }
 
-            function instagram(){
 
+            function initPushwoosh() {
+                alert("Iniciou Push");
 
-                var canvas = document.getElementById('insta');
-                var ctx = canvas.getContext('2d');
+                var pushNotification = window.plugins.pushNotification;
+                pushNotification.onDeviceReady();
 
-                ctx.fillStyle = "rgb(200,0,0)";
-                ctx.fillRect (0, 0, 612, 612);
+                pushNotification.registerDevice({ 
+                        alert:true, 
+                        pw_appid:"741AA-49F76", 
+                        appname:"Curso", 
+                        projectid: "870510407514", 
+                        appid : "741AA-49F76" 
+                    },
+                    function(status) {
+                        var pushToken = status;
 
-                ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
-                ctx.fillRect (30, 30, 55, 50);
-
-                console.log('Received Event: ' + id);
-
-                //Função do Instagram
-                Instagram.share('insta', function (err) {
-                    if (err) {
-                        alert("not shared");
-                    } else {
-                        alert("shared");
+                        alert(pushToken)
+                        console.warn('push token: ' + pushToken);
+                    },
+                    function(status) {
+                        alert(JSON.stringify(['failed to register ', status]));
                     }
+                );
+
+                document.addEventListener('push-notification', function(event) {
+                    
+                    var title = event.notification.title;
+                    var userData = event.notification.userdata;
+
+                    if(typeof(userData) != "undefined") {
+                        console.warn('user data: ' + JSON.stringify(userData));
+                    }
+                    
+                    alert(title);
                 });
             }
+
+
 
         </script>
     </body>
