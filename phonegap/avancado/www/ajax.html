@@ -22,45 +22,43 @@
             <a href="index.html" class="button">Voltar</a>
             <br/>
             <h1>Ajax</h1>
-    		<ul id="listview"></ul>
+    		<div id="txt">
+    			<h1>Lista de Bares</h1>
+    		</div>
+            <button onclick="ajax()" class="button">Call</a>
 
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" charset="utf-8">
 	       
-	       function ajax() {
+			function ajax() {
 
-				var url = "http://wheresbar.com.br:8080/webservices/bares/";
-				console.log(url)
-				  $.ajax({
-				      url: url,
-				      type: 'GET',
-				      error : function (data){
-				              
-				              console.log(data);
-				      },
-				      success: function (data) {
+			  $.ajax({
+			      url: "http://wheresbar.com.br:8080/webservices/bares/",
+			      type: 'GET',
+			      error : function (data){
+			              
+			              alert(data);
+			      },
+			      success: function (data) {
+			      	
+			        linha = "<ul>";
+			        for (var i = 0; i < data.length; i++) {
 
-				        linha = "";
-				        for (var i = 0; i < data.length; i++) {
+			          linha += '<li>';
+			          linha += '    <img src="http://wheresbar.com.br:8080/static/'+data[i][0]+'" width="70" style="left: 8px;top: 4px;">';
+			          linha += '    <h2>'+data[i][1]+'</h2>';
+			          linha += '    <p>'+data[i][2]+'</p></a>';
+			          linha += ' </li>';
+			        };
 
-				          linha += '<li>';
-				          linha += '  <a href="#bar" onclick="sessionStorage.ID='+data[i][4]+'">';
-				          linha += '    <img src="http://wheresbar.com.br:8080/static/'+data[i][0]+'" width="70" style="left: 8px;top: 4px;">';
-				          linha += '    <h2>'+data[i][1]+'</h2>';
-				          linha += '    <p>'+data[i][2]+'</p></a>';
-				          linha += '    <span class="ui-li-count">'+data[i][3]+'</span>';
-				          linha += '  </a>';
-				          linha += ' </li>';
-				          
+			        linha += "<ul/>";
 
-				        };
-				    	
-				    	$("listview").html(linha);
+			        document.getElementById('txt').innerHTML += linha;
 
-				      }
-				  });
+			      }
+			  });
 			}
 
     </script>

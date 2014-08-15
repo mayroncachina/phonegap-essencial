@@ -16,9 +16,8 @@
             <br/>
             <h1>VIDEO</h1>
 
-            <button onclick="show()" class="button">Show</a>
-
             <video id="myvideo" loop></video>
+            <button onclick="show()" class="button">Play</button>
 
 
 
@@ -29,7 +28,11 @@
 
         function show(){
             
-            window.plugins.html5Video.play("http://www.w3schools.com/html/movie.mp4");
+           window.plugins.html5Video.initialize({
+              "video1" : "movie.mp4", 
+          })
+
+           window.plugins.html5Video.play("video1")
         }
 
         </script>

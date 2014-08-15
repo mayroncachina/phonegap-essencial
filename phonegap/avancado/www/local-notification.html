@@ -22,34 +22,36 @@
             <a href="index.html" class="button">Voltar</a>
             <br/>
             <h1>Local Notification</h1>
-    		<button onclick="iniciar" class="button">Iniciar</button>
-    		<button onclick="cancelar" class="button">Cancelar</button>
+    		<button onclick="iniciar()" class="button">Iniciar</button>
+            <button onclick="simples()" class="button">Simples</button>
+    		<button onclick="cancelar()" class="button">Cancelar</button>
 
 
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" charset="utf-8">
-	       
-	       function iniciar() {
 
-				var now                  = new Date().getTime()
-				var _60_seconds_from_now = new Date(now + 60*1000);
+            function simples(){
+                window.plugin.notification.local.add({ message: 'Hello World!' });
+            }	    
 
-				window.plugin.notification.local.add({
-				    id:      1, // A unique id of the notifiction
-				    title:   'Reminder',
-				    message: 'Dont forget to buy some flowers.',
-				    repeat:  'minutely', // 'secondly', 'minutely', 'hourly', 'daily', 'weekly', 'monthly' or 'yearly'
-				    date:    _60_seconds_from_now
-				});
+            function iniciar() {
 
-				
-			}
+            	window.plugin.notification.local.add({
+            	    id:      1, // A unique id of the notifiction
+            	    title:   'Reminder',
+            	    message: 'Dont forget to buy some flowers.',
+            	    repeat:  'minutely', // 'secondly', 'minutely', 'hourly', 'daily', 'weekly', 'monthly' or 'yearly'
+            	    date:    new Date().getTime()
+            	});
 
-			function cancelar(){
-				window.plugin.notification.local.cancel(1);
-			}
+            	
+            }
+
+            function cancelar(){
+            	window.plugin.notification.local.cancel(1);
+}
 
     </script>
     </body>

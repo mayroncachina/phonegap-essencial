@@ -49,7 +49,7 @@
 
 	        var mapa = "http://maps.googleapis.com/maps/api/staticmap?";
 	        mapa += "&zoom=13";
-	        mapa += "&size=600x300";
+	        mapa += "&size=320x320";
 	        mapa += "&maptype=roadmap"; // roadmap, satellite, hybrid e terrain
 			mapa += "&markers=color:blue%7Clabel:S%7C"+position.coords.latitude+","+position.coords.longitude;
 			mapa += "&sensor=true";
@@ -58,7 +58,7 @@
 			sensor (obrigatório): especifica se o aplicativo que está solicitando o mapa estático está usando um sensor para determinar a localização do usuário. Esse parâmetro é obrigatório para todas as solicitações de mapa estático. Para obter mais informações, consulte Como indicar o uso do sensor abaixo.
 			*/
 
-	        $('map-canvas').html("<img src='"+mapa+"'/>");
+	        $('#map-canvas').html("<img src='"+mapa+"'/>");
 
 	      }
 
