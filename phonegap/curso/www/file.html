@@ -15,27 +15,121 @@
             <a href="api.html" class="button">Voltar</a>
             <br/>
             <h1>File-Transfer</h1>
+            <button onclick="getImage();">Click to Upload</button>
+            <button id="startDl" disabled>Click to Download</button>
+            <div id="status"></div>
 
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript">
-
-            function onPhotoUriSuccess(imageUriToUpload){
-
-                var url=encodeURI("http://sandbox.cachina.com.br/transit/index.php");
-
-                var options = new FileUploadOptions();
-                options.imagem = imageUriToUpload.substr(imageUriToUpload.lastIndexOf('/')+1);
-                options.mimeType = "image/jpeg";
-                options.params = params;
-                options.chunkedMode = true; //isto é importante para enviar os dados e arquivos
+            document.addEventListener('deviceready', deviceready, false);
+             
+            var buttomDom;
+            var statusDom;
+            var fileSystem;
 
 
-                var ft = new FileTransfer();
-                ft.upload(imageUriToUpload, url, succesFileTransfer, errorFileTransfer, options);
+            function deviceready() {
+                console.log('dv ready');
+              
+                //step one is to request a file system  
+                window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, 
+                    function(fs) {
+                        fileSystem = fs;
+                
+                        buttonDom = document.querySelector('#startDl');
+                        buttonDom.addEventListener('touchend', startDl, false);
+                        buttonDom.removeAttribute("disabled");
+                
+                        statusDom = document.querySelector('#status');
 
+                    }, function(e) {
+                        alert('failed to get fs');
+                        alert(JSON.stringify(e));
+                    });
             }
+             
+            function startDl() {
 
+                buttonDom.setAttribute("disabled","disabled");
+                
+                var ft = new FileTransfer();
+                var uri = encodeURI("http://archive.org/download/Kansas_Joe_Memphis_Minnie-When_Levee_Breaks/Kansas_Joe_and_Memphis_Minnie-When_the_Levee_Breaks.mp3");
+             
+                var downloadPath = fileSystem.root.fullPath + "/download.mp3";
+             
+                ft.onprogress = function(progressEvent) {
+                    if (progressEvent.lengthComputable) {
+                        var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
+                        statusDom.innerHTML = perc + "% loaded...";
+                    } else {
+                        if(statusDom.innerHTML == "") {
+                            statusDom.innerHTML = "Loading";
+                        } else {
+                            statusDom.innerHTML += ".";
+                        }
+                    }
+                };
+                                    
+                ft.download(uri, downloadPath, 
+                function(entry) {
+                    statusDom.innerHTML = "";
+                    var media = new Media(entry.fullPath, null, function(e) { alert(JSON.stringify(e));});
+                    media.play();
+                    
+                }, 
+                function(error) {
+                    alert('Crap something went wrong...');  
+                });
+                    
+                
+            }
         </script>
+        <script type="text/javascript" charset="utf-8">
+ 
+        function getImage() {
+            // Retrieve image file location from specified source
+            navigator.camera.getPicture(uploadPhoto, function(message) {
+            alert('get picture failed');
+        },{
+            quality: 50, 
+            destinationType: navigator.camera.DestinationType.FILE_URI,
+            sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        }
+            );
+ 
+        }
+ 
+        function uploadPhoto(imageURI) {
+
+            var options = new FileUploadOptions();
+            options.fileKey="file";
+            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+            options.mimeType="image/jpeg";
+ 
+            var params = new Object();
+            params.value1 = "test";
+            params.value2 = "param";
+ 
+            options.params = params;
+            options.chunkedMode = false;
+ 
+            var ft = new FileTransfer();
+            ft.upload(imageURI, "http://sandbox.cachina.com.br/upload.php", win, fail, options);
+        }
+ 
+        function win(r) {
+            console.log("Code = " + r.responseCode);
+            console.log("Response = " + r.response);
+            console.log("Sent = " + r.bytesSent);
+            alert(r.response);
+        }
+ 
+        function fail(error) {
+            alert("An error has occurred: Code = " = error.code);
+        }
+ 
+        </script>
+
     </body>
 </html>
