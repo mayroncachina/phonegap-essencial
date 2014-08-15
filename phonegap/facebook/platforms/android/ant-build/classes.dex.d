@@ -1,0 +1,26 @@
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes.dex : \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/org/apache/cordova/camera/FileHelper.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/org/apache/cordova/camera/CameraLauncher.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/org/apache/cordova/camera/ExifHelper.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$5.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$1.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$2.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$5$1.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$InAppBrowserClient.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$5$2.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$5$3.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$4$1.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$3.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$4.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$5$4.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppChromeClient.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowserDialog.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/br/com/curso/face/R$drawable.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/br/com/curso/face/R.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/br/com/curso/face/R$attr.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/br/com/curso/face/BuildConfig.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/br/com/curso/face/R$string.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/br/com/curso/face/R$xml.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/classes/br/com/curso/face/Facebook.class \
+/home/mayron/Desktop/phonegap-essencial/phonegap/facebook/platforms/android/ant-build/dexedLibs/classes-4c497c227b79f0df2b8a11b2514fc2b0.jar \

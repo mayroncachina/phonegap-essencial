@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Hello World</title>
+    </head>
+    <body>
+        <div class="app">
+            <h1>Facebook Plugin</h1>
+            <div class="facebook">
+
+                <p id="face"></p>
+
+                <button class="btn" id="facebook_login" onclick="facebook.onFacebookLogin();">
+                  Logue no Facebook
+                </button>
+
+                <button class="btn" id="facebook_login" onclick="facebook.onFacebookCheckWithLogin()">
+                  Check Login
+                </button>
+
+                <button class="btn" id="facebook_login" onclick="popularFace()">
+                  Obter Dados
+                </button>               
+
+                <button class="btn" id="facebook_login" onclick="facebook.onFacebookLogout();popularFace()">
+                  Logout
+                </button>
+            </div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/phonegap.facebook.plugin.js"></script>
+        <script type="text/javascript">
+            function popularFace() {
+                facebook.onFacebookGetInfo();
+                setTimeout(function(){
+                    
+                    var nome = window.localStorage.getItem('facebook_name');
+                    var image = window.localStorage.getItem('facebook_image');
+                    alert(image)
+                    $("#face").html("<h3>"+nome+"</h3><br/><img src='"+image+"'/>");
+
+                }, 3000);
+            }
+        </script>
+    </body>
+</html>
