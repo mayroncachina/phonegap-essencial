@@ -1,19 +1,94 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
-    </head>
-    <body>
-        <div class="app">
-            
-        </div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery Mobile Demos</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+</head>
+<body>
+<div data-role="page" id="page">
+
+    <div data-role="header">
+        <h1>Exemplos jQuery Mobile - Page Events</h1>
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content">
+        <ul data-role="listview" id="lista">
+            <li><a href="#page2">ADD</a> </li>
+            <li><a href="#page3" onclick="listar()" >Listar</a> </li>
+        </ul>
+    </div><!-- /content -->
+
+    <div data-role="footer" data-position="fixed">
+        TEXTO
+    </div><!-- /footer -->
+
+</div><!-- /page -->
 
 
-        <script type="text/javascript" src="cordova.js"></script>
-    </body>
+
+<div data-role="page" id="page2">
+
+    <div data-role="header">
+        <h1>Adicionar numero</h1>
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content">
+        <input type="text" id="nome" placeholder="Nome" required="required">
+        <input type="tel" id="telefone" placeholder="Telefone" required="required">
+        <button onclick="salva()">Salvar</button>
+    </div><!-- /content -->
+
+    <div data-role="footer" data-position="fixed">
+        TEXTO
+    </div><!-- /footer -->
+</div>
+
+
+    <div data-role="page" id="page3">
+
+        <div data-role="header">
+            <h1>Lista</h1>
+        </div><!-- /header -->
+
+        <div role="main" class="ui-content">
+            <ul data-role="listview" id="lista_telefone">
+
+            </ul>
+        </div><!-- /content -->
+
+        <div data-role="footer" data-position="fixed">
+            TEXTO
+        </div><!-- /footer -->
+    </div>
+<script>
+    function salva(){
+        var nome = $('#nome').val();
+        var telefone = $('#telefone').val();
+        localStorage.setItem(nome, telefone);
+
+        $('#nome').val('');
+        $('#telefone').val('');
+
+       alert('Salvo com sucesso!');
+
+    }
+
+function listar(){
+    $('#lista_telefone').html('');
+    for(nome in localStorage){
+        var telefone = localStorage.getItem(nome);
+        $('#lista_telefone').append("<li><a href=''>"+nome+" | "+telefone+"</a></li>");
+    }
+    $('#lista_telefone').listview( 'refresh' );
+}
+function alertDismissed(){
+    window.history.go(-1);
+}
+
+    </script>
+</body>
 </html>
